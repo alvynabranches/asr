@@ -69,7 +69,7 @@ WORKDIR /
 # COPY test.py /test.py
 # ENTRYPOINT [ "python3", "/test.py" ]
 
-# ENTRYPOINT [ "pip", "freeze" ]
+# Actuall file to be runned for inference. 
 # ENTRYPOINT [ "python3", "/VoiceAssistant/speechrecognition/demo/demo.py" ]
 
 EXPOSE 3000
