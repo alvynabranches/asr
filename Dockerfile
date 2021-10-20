@@ -44,8 +44,10 @@ RUN python3 -m pip install -r requirements.txt
 # RUN apt install nvidia-driver-465 -y
 # ENTRYPOINT [ "nvidia-smi" ]
 
+RUN apt install git
+
 WORKDIR /
-COPY . /VoiceAssistant
+RUN git clone https://github.com/parlance/ctcdecode.git
 RUN pip install /VoiceAssistant/VoiceAssistant/ctcdecode/.
 
 # ENTRYPOINT [ "pip", "freeze" ]
