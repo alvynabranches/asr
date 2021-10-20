@@ -27,10 +27,17 @@ RUN apt install libportaudiocpp0 -y
 RUN apt install portaudio19-dev -y
 RUN apt install ffmpeg -y
 RUN apt install cmake -y
+RUN apt install git -y
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade wheel
+
+RUN git clone https://github.com/parlance/ctcdecode.git
+RUN git clone http://github.com/LearnedVector/A-Hackers-AI-Voice-Assistant
+RUN mv /A-Hackers-AI-Voice-Assistant/VoiceAssistant/ /VoiceAssistant/
+COPY requirements.txt /requirements.txt
+RUN rm -rf /A-Hackers-AI-Voice-Assistant
 
 # 2 GB file next
 RUN python3 -m pip install torch==1.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
@@ -38,19 +45,31 @@ RUN python3 -m pip install torchvision==0.10.1+cu111 -f https://download.pytorch
 RUN python3 -m pip install torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
 RUN python3 -m pip install torchtext==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
 RUN python3 -m pip install torchmetrics==0.5.1 -f https://download.pytorch.org/whl/torch_stable.html
-RUN python3 -m pip install -r requirements.txt
+RUN python3 -m pip install -r /requirements.txt
+
+RUN python3 -m pip install /ctcdecode/.
 
 # RUN apt install nvidia-driver-460 -y
 # RUN apt install nvidia-driver-465 -y
 # ENTRYPOINT [ "nvidia-smi" ]
 
-RUN apt install git
+### Test Commands (Just for checking if versions are proper)
+# working -> 3.8.10
+# ENTRYPOINT [ "python3", "--version" ]
+
+# working -> 11.1.105
+# ENTRYPOINT [ "nvcc", "--version" ]
+
+# working -> 20.0.2 (3.8)
+# ENTRYPOINT [ "pip", "--version" ]
 
 WORKDIR /
-RUN git clone https://github.com/parlance/ctcdecode.git
-RUN pip install /VoiceAssistant/VoiceAssistant/ctcdecode/.
+
+### For testing purpose create a test.py file and uncomment next 2 lines of code. 
+# COPY test.py /test.py
+# ENTRYPOINT [ "python3", "/test.py" ]
 
 # ENTRYPOINT [ "pip", "freeze" ]
-ENTRYPOINT [ "python3", "speechrecognition/demo/demo.py" ]
+# ENTRYPOINT [ "python3", "/VoiceAssistant/speechrecognition/demo/demo.py" ]
 
 EXPOSE 3000
