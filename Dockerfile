@@ -73,7 +73,6 @@ WORKDIR /
 # COPY test.py /test.py
 # ENTRYPOINT [ "python3", "/test.py" ]
 
-# Actuall file to be runned for inference. 
-# ENTRYPOINT [ "python3", "/VoiceAssistant/speechrecognition/demo/demo.py" ]
-
+# Actual file to be runned for inference. 
+ENTRYPOINT [ "python3", "/VoiceAssistant/speechrecognition/demo/demo.py" ]
 EXPOSE 3000
