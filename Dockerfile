@@ -32,12 +32,11 @@ RUN apt install git -y
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade wheel
+RUN python3 -m pip install --upgrade flask
+RUN python3 -m pip install --upgrade pyaudio
+RUN python3 -m pip install --upgrade pandas
 
 RUN git clone https://github.com/parlance/ctcdecode.git
-RUN git clone http://github.com/LearnedVector/A-Hackers-AI-Voice-Assistant
-RUN mv /A-Hackers-AI-Voice-Assistant/VoiceAssistant/ /VoiceAssistant/
-COPY requirements.txt /requirements.txt
-RUN rm -rf /A-Hackers-AI-Voice-Assistant
 
 # 2 GB file next
 RUN python3 -m pip install torch==1.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
@@ -45,9 +44,10 @@ RUN python3 -m pip install torchvision==0.10.1+cu111 -f https://download.pytorch
 RUN python3 -m pip install torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
 RUN python3 -m pip install torchtext==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
 RUN python3 -m pip install torchmetrics==0.5.1 -f https://download.pytorch.org/whl/torch_stable.html
-RUN python3 -m pip install -r /requirements.txt
 
 RUN python3 -m pip install /ctcdecode/.
+COPY requirements.txt /requirements.txt
+RUN python3 -m pip install -r /requirements.txt
 
 # RUN apt install nvidia-driver-460 -y
 # RUN apt install nvidia-driver-465 -y
