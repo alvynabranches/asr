@@ -28,6 +28,8 @@ RUN apt install portaudio19-dev -y
 RUN apt install ffmpeg -y
 RUN apt install cmake -y
 RUN apt install git -y
+RUN apt install wget -y
+RUN apt install libmagic-dev -y
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade setuptools
@@ -45,7 +47,9 @@ RUN python3 -m pip install torchaudio==0.9.1 -f https://download.pytorch.org/whl
 RUN python3 -m pip install torchtext==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
 RUN python3 -m pip install torchmetrics==0.5.1 -f https://download.pytorch.org/whl/torch_stable.html
 
+ENV CUDA_HOME /usr/local/cuda
 RUN python3 -m pip install /ctcdecode/.
+
 COPY requirements.txt /requirements.txt
 RUN python3 -m pip install -r /requirements.txt
 
