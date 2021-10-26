@@ -2,10 +2,12 @@ Business Goal
 We are building this project for taking orders from the customers on resurant counters. 
 
 Platform
-Linux (using docker), python, and deep learning libraries (pytorch or keras)
+ - Linux (using docker)
+ - Python
+ - Deep Learning Libraries (pytorch or keras (TBD))
 
 Success Criteria
-We will be using WER (word error rate) to calulate the loss of the ASR model. 
+ - We will be using WER (word error rate) to calulate the loss of the ASR model. 
 
 Data
  - Training will be done on data of 2500 sentence. 
