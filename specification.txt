@@ -8,7 +8,14 @@ Success Criteria
 We will be using WER (word error rate) to calulate the loss of the ASR model. 
 
 Data
-Training will be done on data of 2500 sentence. Each project member will record 25 sentences from a device, where each member will record from 2 devices. 
+  - Training will be done on data of 2500 sentence. 
+  - Each project member will record 25 sentences from a device, where each member will record from 2 devices. 
+
+Testing
+ - 5 mins (audio time) testing will be done to test the accuracy of the model in online mode (streaming). 
 
 Future Scope
-We will also be taking customer feedbacks and reviews from the same ASR system in the future. We will also try to expand the number of domains in the future. 
+ - We will also be taking customer feedbacks and reviews from the same ASR system in the future. 
+ - We will also try to expand the number of domains in the future. 
+ - We will be using file input (mp3, wav) in the future. 
+ 
